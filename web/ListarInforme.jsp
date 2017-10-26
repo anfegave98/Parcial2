@@ -66,12 +66,18 @@
                         </tr>
                         <% }
                             }
+
                         %>
 
                     </table>
 
                 </div>
             </div>
+                          <% 
+                             int i=(Integer) request.getAttribute("Total");
+                        %>
+                        <h1> Total de la empresa: <%=i%> </h1>
+                        
         </div>
 
     </body>

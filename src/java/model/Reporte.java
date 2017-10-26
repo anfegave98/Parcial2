@@ -11,19 +11,19 @@ package model;
  */
 public class Reporte {
     String nombreEmpleado;
-    float sueldo;
-    float auxilioTransporte;
-    float prima;
-    float cesantias;
-    float intereses;
-    float vacaciones;
-    float salud;
-    float pension;
-    float parafiscales;
+    long sueldo;
+    long auxilioTransporte;
+    long prima;
+    long cesantias;
+    long intereses;
+    long vacaciones;
+    long salud;
+    long pension;
+    long parafiscales;
     int dias;
-    float total;
+    long total;
 
-    public Reporte(String nombreEmpleado, float sueldo, float auxilioTransporte, float prima, float cesantias, float intereses, float vacaciones, float salud, float pension, float parafiscales, int dias,float total) {
+    public Reporte(String nombreEmpleado, long sueldo, long auxilioTransporte, long prima, long cesantias, long intereses, long vacaciones, long salud, long pension, long parafiscales, int dias, long total) {
         this.nombreEmpleado = nombreEmpleado;
         this.sueldo = sueldo;
         this.auxilioTransporte = auxilioTransporte;
@@ -46,78 +46,78 @@ public class Reporte {
         this.nombreEmpleado = nombreEmpleado;
     }
 
-    public float getSueldo() {
+    public long getSueldo() {
         return sueldo;
     }
 
-    public void setSueldo(float sueldo) {
+    public void setSueldo(long sueldo) {
         this.sueldo = sueldo;
     }
 
-    public float getAuxilioTransporte() {
+    public long getAuxilioTransporte() {
         return auxilioTransporte;
     }
 
-    public void setAuxilioTransporte(float auxilioTransporte) {
+    public void setAuxilioTransporte(long auxilioTransporte) {
         this.auxilioTransporte = auxilioTransporte;
     }
 
-    public float getPrima() {
+    public long getPrima() {
         return prima;
     }
 
-    public void setPrima(float prima) {
+    public void setPrima(long prima) {
         this.prima = prima;
     }
 
-    public float getCesantias() {
+    public long getCesantias() {
         return cesantias;
     }
 
-    public void setCesantias(float cesantias) {
+    public void setCesantias(long cesantias) {
         this.cesantias = cesantias;
     }
 
-    public float getIntereses() {
+    public long getIntereses() {
         return intereses;
     }
 
-    public void setIntereses(float intereses) {
+    public void setIntereses(long intereses) {
         this.intereses = intereses;
     }
 
-    public float getVacaciones() {
+    public long getVacaciones() {
         return vacaciones;
     }
 
-    public void setVacaciones(float vacaciones) {
+    public void setVacaciones(long vacaciones) {
         this.vacaciones = vacaciones;
     }
 
-    public float getSalud() {
+    public long getSalud() {
         return salud;
     }
 
-    public void setSalud(float salud) {
+    public void setSalud(long salud) {
         this.salud = salud;
     }
 
-    public float getPension() {
+    public long getPension() {
         return pension;
     }
 
-    public void setPension(float pension) {
+    public void setPension(long pension) {
         this.pension = pension;
     }
 
-    public float getParafiscales() {
+    public long getParafiscales() {
         return parafiscales;
     }
 
-    public void setParafiscales(float parafiscales) {
+    public void setParafiscales(long parafiscales) {
         this.parafiscales = parafiscales;
     }
-    
+
     public int getDias() {
         return dias;
     }
@@ -125,21 +125,23 @@ public class Reporte {
     public void setDias(int dias) {
         this.dias = dias;
     }
-    
-    
-    
-    public float getTotal() {
+
+    public long getTotal() {
         return total;
     }
 
-    public void setTotal(float total) {
+    public void setTotal(long total) {
         this.total = total;
     }
+
+  
 
     @Override
     public String toString() {
         return "Reporte{" + "nombreEmpleado=" + nombreEmpleado + ", sueldo=" + sueldo + ", auxilioTransporte=" + auxilioTransporte + ", prima=" + prima + ", cesantias=" + cesantias + ", intereses=" + intereses + ", vacaciones=" + vacaciones + ", salud=" + salud + ", pension=" + pension + ", parafiscales=" + parafiscales + ", total=" + total + '}';
     }
+
+   
 
    
     

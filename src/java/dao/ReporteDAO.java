@@ -28,41 +28,44 @@ public class ReporteDAO {
     public ArrayList<Reporte> getAllReportes() throws SQLException {
         ArrayList<Reporte> tabla = new ArrayList<>();
         boolean result = false;
-        String query = "SELECT empleado.nombre,empleado.sueldo,estatus_empleado.fecha_ingreso from empleado,estatus_empleado where estatus_empleado.id_estatus = empleado.id_empleado ";
-        System.out.println("metodo9");
+        String query = "SELECT empleado.nombre,empleado.sueldo,estatus_empleado.fecha_ingreso from empleado,estatus_empleado where estatus_empleado.id_estatus = empleado.estatus ";
+  
         try {
 
             Statement st = connection.createStatement();
             ResultSet rs = st.executeQuery(query);
 
-            float devengado;
-
+         
             String nombre = null;
-            float sueldo = 0;
-            float auxilioTransporte=0;
-            float prima=0;
-            float cesantias=0;
-            float intereses=0;
-            float vacaciones=0;
-            float salud=0;
-            float pension=0;
-            float parafiscales=0;
-            float total=0;
+            long sueldo = 0;
+            long auxilioTransporte=0;
+            long prima=0;
+            long cesantias=0;
+            long intereses=0;
+            long vacaciones=0;
+            long salud=0;
+            long pension=0;
+            long parafiscales=0;
+            long total=0;
             
             String fecha_ingreso = null;
             int diasTrabajados=0;
 
             while (rs.next()) {
-                System.out.println("whle");
+             
                 Reporte registro = new Reporte(nombre, sueldo, auxilioTransporte, prima, cesantias, intereses, vacaciones, salud, pension, parafiscales, diasTrabajados ,total);
                 
                 total=0;
+                diasTrabajados =  0;
                 
                 fecha_ingreso= rs.getString("fecha_ingreso");
-                System.out.println(fecha_ingreso+"aquie llegu e");
+               
                 String fechas[]= fecha_ingreso.split("-");
-                diasTrabajados+= 31 - Integer.parseInt(fechas[1]);
-                diasTrabajados+= (12 - Integer.parseInt(fechas[2]))*30;
+                diasTrabajados+= 31 - Integer.parseInt(fechas[0]);
+                diasTrabajados+= (12 - Integer.parseInt(fechas[1]))*30;
+                
+                registro.setDias(diasTrabajados);
+                
                 
                 
                 
@@ -73,7 +76,7 @@ public class ReporteDAO {
                 sueldo = rs.getInt("sueldo");
                 registro.setSueldo(sueldo);
                 
-                auxilioTransporte = (float) 83.140;
+                auxilioTransporte =  (long) 83.140;
                 registro.setAuxilioTransporte(auxilioTransporte);
                 
                 
@@ -91,7 +94,7 @@ public class ReporteDAO {
                 total += cesantias;
 
                 //intereses cesanstias
-                intereses = (float) (sueldo * 0.12);
+                intereses = (long)  (sueldo * 0.12);
                 registro.setIntereses(intereses);
                 total += intereses;
 
@@ -101,22 +104,22 @@ public class ReporteDAO {
                 total += vacaciones;
 
                 //transporte
-                auxilioTransporte = (float) ((83.140*360)/diasTrabajados);
+                auxilioTransporte = (long)  ((83.140*360)/diasTrabajados);
                 registro.setAuxilioTransporte(auxilioTransporte);
                 total += auxilioTransporte;
 
                 //salud
-                salud = (float) (((sueldo * 12) + ((diasTrabajados * sueldo) / 360) + ((diasTrabajados * sueldo) / 360) + (sueldo * 0.12) + ((diasTrabajados * sueldo) / 720)) * 0.85);
+                salud =  (long) (((sueldo * 12) + ((diasTrabajados * sueldo) / 360) + ((diasTrabajados * sueldo) / 360) + (sueldo * 0.12) + ((diasTrabajados * sueldo) / 720)) * 0.85);
                 registro.setSalud(salud);
                 total += salud;
 
                 //Pension
-                pension= (float) (sueldo * 0.12);
+                pension=  (long) (sueldo * 0.12);
                 registro.setPension(pension);
                 total += pension;
 
                 //parafiscales
-                parafiscales = (float) ((total * 0.2)+ (total*0.3) +(total*.4));
+                parafiscales =  (long) ((total * 0.2)+ (total*0.3) +(total*.4));
                 registro.setParafiscales(parafiscales);
                 total += parafiscales;
 
@@ -127,10 +130,9 @@ public class ReporteDAO {
                 tabla.add(registro);
 
             }
-            System.out.println("Holaaaaaa");
-             
+            
             for(int i=0;i<tabla.size();i++){
-                System.out.println(tabla.get(i).getCesantias());
+                System.out.println(tabla.get(i).getNombreEmpleado());
             
              }
 

@@ -71,9 +71,11 @@ public class Informe extends HttpServlet {
             ArrayList<Reporte> lista = (ArrayList<Reporte>) obj.getAllReportes();
             
             request.setAttribute("listaInforme", lista);
-            
-             
-            
+            int i=0;
+           for(Reporte l : lista){
+               i+=l.getTotal();
+           }  
+           request.setAttribute("Total", i);
            request.getRequestDispatcher("/ListarInforme.jsp").forward(request, response);
 
         } catch (SQLException ex) {
