@@ -62,14 +62,17 @@ public class ListarE extends HttpServlet {
      @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         try {
+         System.out.println("sdiofjqpweoifjqwepofij"); 
+        try {
             EmpleadoDAO obj = new EmpleadoDAO();
             
             ArrayList<Empleado> lista = (ArrayList<Empleado>) obj.getAllEmpleados();
             
-            request.setAttribute("listaEmpelados", lista);
+            request.setAttribute("listaEmpleados", lista);
             
-           request.getRequestDispatcher("ListarEmpleados.jsp").forward(request, response);
+             
+            
+           request.getRequestDispatcher("/ListarEmpleados.jsp").forward(request, response);
 
         } catch (SQLException ex) {
             Logger.getLogger(ListarE.class.getName()).log(Level.SEVERE, null, ex);
@@ -80,32 +83,7 @@ public class ListarE extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-       try {
-            int id =0;
-           String nombre=null;
-           String lugar=null;
-           int sueldo=0;
-           String estatus=null;
-           String tipocontrato=null;
-           String departamento=null;
-           String puesto=null;
-           String turno =null;
-           String tiposueldo=null;
-           String regimen=null;
-
-             
-             
-            EmpleadoDAO dao = new EmpleadoDAO();
-          //  Empelado tab = new Empleado(nombre,id);
-            
-           // dao.addTabla(tab);
-           
-            
-            response.sendRedirect("ListarE");
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(ListarE.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       
     }
 
     @Override

@@ -124,6 +124,11 @@ public class Empleado {
         this.regimen_contratacion = regimen_contratacion;
     }
 
+    @Override
+    public String toString() {
+        return "Empleado{" + "id_empleado=" + id_empleado + ", nombre_empleado=" + nombre_empleado + ", lugar_nacimiento=" + lugar_nacimiento + ", sueldo=" + sueldo + ", estatus=" + estatus + ", tipocontrato=" + tipocontrato + ", departamento=" + departamento + ", puesto=" + puesto + ", turno=" + turno + ", tiposueldo=" + tiposueldo + ", regimen_contratacion=" + regimen_contratacion + '}';
+    }
+
     
 
 }

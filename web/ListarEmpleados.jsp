@@ -41,7 +41,7 @@
 
                         </tr>
                         <% if (request.getAttribute("listaEmpleados") != null) {
-                                ArrayList<Empleado> list = (ArrayList<Empleado>) request.getAttribute("listaEmpelados");
+                                ArrayList<Empleado> list = (ArrayList<Empleado>) request.getAttribute("listaEmpleados");
                                 if (list != null)
                                     for (Empleado tabla : list) {
 

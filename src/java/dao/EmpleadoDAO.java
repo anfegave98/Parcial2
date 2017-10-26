@@ -47,8 +47,8 @@ public class EmpleadoDAO {
         return result;
     }
     
-      public List<Empleado> getAllEmpleados() throws SQLException {
-        List<Empleado> tabla = null;
+      public ArrayList<Empleado> getAllEmpleados() throws SQLException {
+        ArrayList<Empleado> tabla = new ArrayList<>();
         boolean result = false;
         String query ="SELECT empleado.id_empleado,empleado.nombre,empleado.lugar_nacimiento,empleado.sueldo,estatus_empleado.nombre_estatus,tipo_contrato.nombre_contrato,departamento.nombre_departamento, puesto.nombre_puesto,turno.nombre_turno,tipo_sueldo.nombre, tipo_regimencontratacion.nombre_regimen FROM empleado,tipo_sueldo,tipo_regimencontratacion,tipo_contrato,departamento,puesto,turno,estatus_empleado where empleado.estatus = estatus_empleado.id_estatus and empleado.tipocontrato = tipo_contrato.id_tipocontrato and empleado.departamento = departamento.id_departamento and empleado.puesto = puesto.id_puesto and empleado.turno = turno.id_turno and empleado.tiposueldo=tipo_sueldo.id_sueldo and empleado.regimen_contratacion = tipo_regimencontratacion.id_regimen";
         Connection connection = DbUtil.getConnection();
@@ -70,9 +70,6 @@ public class EmpleadoDAO {
            String regimen=null;
 
             while (rs.next()) {
-                if (tabla == null) {
-                    tabla = new ArrayList<Empleado>();
-                }
                 Empleado registro = new Empleado(id,nombre,lugar,sueldo,estatus,tipocontrato,departamento,puesto,turno,tiposueldo,regimen);
                 
                 id = rs.getInt("id_empleado");
@@ -87,26 +84,29 @@ public class EmpleadoDAO {
                 sueldo = rs.getInt("sueldo");
                 registro.setSueldo(sueldo);
                 
-                tipocontrato = rs.getString("tipocontrato");
+                estatus= rs.getString("nombre_estatus");
+                registro.setEstatus(estatus);
+                
+                tipocontrato = rs.getString("nombre_contrato");
                 registro.setTipocontrato(tipocontrato);
                 
-                departamento = rs.getString("departamento");
+                departamento = rs.getString("nombre_departamento");
                 registro.setDepartamento(departamento);
                 
-                puesto = rs.getString("puesto");
+                puesto = rs.getString("nombre_puesto");
                 registro.setPuesto(puesto);
                 
-                turno = rs.getString("turno");
+                turno = rs.getString("nombre_turno");
                 registro.setTurno(turno);
 
-                tiposueldo = rs.getString("tiposueldo");
+                tiposueldo = rs.getString("nombre");
                 registro.setTiposueldo(tiposueldo);
                 
-                regimen = rs.getString("regimen_contratacion");
+                regimen = rs.getString("nombre_regimen");
                 registro.setRegimen_contratacion(regimen);
                 
                 tabla.add(registro);
-
+                System.out.println(registro.toString());
             }
             
                 
@@ -117,7 +117,7 @@ public class EmpleadoDAO {
             System.out.println("Problemas al obtener la lista de Tablas");
             e.printStackTrace();
         }
-
+          System.out.println(tabla.toString());
         return tabla;
 
     }

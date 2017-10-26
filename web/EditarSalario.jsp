@@ -1,6 +1,5 @@
 
 
-<%@page import="model.Tabla"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -14,11 +13,11 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
     <body background="fondo.jpg">
-        <h1>Inserte la Tabla</h1>
+        <h1>Inserte el nuevo Sueldo</h1>
         <form action="Tablas" method="POST">
             Id del empleado:
             <input type="text" name="idempleado"/>
-            Nuevo salario:
+            Nuevo sueldo:
             <input type="text" name="salario"/>
             <br>
             <br>  
