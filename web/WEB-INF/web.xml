@@ -8,6 +8,10 @@
         <servlet-name>EditarSalarios</servlet-name>
         <servlet-class>controller.EditarSalarios</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Informe</servlet-name>
+        <servlet-class>controller.Informe</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ListarE</servlet-name>
         <url-pattern>/ListarE</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>EditarSalarios</servlet-name>
         <url-pattern>/EditarSalarios</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Informe</servlet-name>
+        <url-pattern>/Informe</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

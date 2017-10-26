@@ -6,6 +6,7 @@
 package controller;
 
 import dao.EmpleadoDAO;
+import dao.ReporteDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -17,12 +18,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Empleado;
+import model.Reporte;
 
 /**
  *
  * @author LabingXEON
  */
-public class ListarE extends HttpServlet {
+public class Informe extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -62,16 +64,17 @@ public class ListarE extends HttpServlet {
      @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+       
         try {
-            EmpleadoDAO obj = new EmpleadoDAO();
+            ReporteDAO obj = new ReporteDAO();
             
-            ArrayList<Empleado> lista = (ArrayList<Empleado>) obj.getAllEmpleados();
+            ArrayList<Reporte> lista = (ArrayList<Reporte>) obj.getAllReportes();
             
-            request.setAttribute("listaEmpleados", lista);
+            request.setAttribute("listaInforme", lista);
             
              
             
-           request.getRequestDispatcher("/ListarEmpleados.jsp").forward(request, response);
+           request.getRequestDispatcher("/ListarInforme.jsp").forward(request, response);
 
         } catch (SQLException ex) {
             Logger.getLogger(ListarE.class.getName()).log(Level.SEVERE, null, ex);

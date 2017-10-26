@@ -11,7 +11,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import model.Empleado;
 import model.Reporte;
 
 /**
@@ -123,14 +122,16 @@ public class ReporteDAO {
                
 
                 registro.setTotal(total);
-
+                System.out.println(registro.getNombreEmpleado());
                 tabla.add(registro);
 
             }
-            
+            System.out.println("Holaaaaaa");
+             if (tabla != null) {
             for(int i=0;i<tabla.size();i++){
                 System.out.println(tabla.get(i).getCesantias());
             }
+             }
 
             st.close();
 
