@@ -29,7 +29,7 @@ public class ReporteDAO {
         ArrayList<Reporte> tabla = new ArrayList<>();
         boolean result = false;
         String query = "SELECT empleado.nombre,empleado.sueldo,estatus_empleado.fecha_ingreso from empleado,estatus_empleado where estatus_empleado.id_estatus = empleado.id_empleado ";
-        Connection connection = DbUtil.getConnection();
+        System.out.println("metodo9");
         try {
 
             Statement st = connection.createStatement();
@@ -53,12 +53,13 @@ public class ReporteDAO {
             int diasTrabajados=0;
 
             while (rs.next()) {
+                System.out.println("whle");
                 Reporte registro = new Reporte(nombre, sueldo, auxilioTransporte, prima, cesantias, intereses, vacaciones, salud, pension, parafiscales, diasTrabajados ,total);
                 
                 total=0;
                 
                 fecha_ingreso= rs.getString("fecha_ingreso");
-                
+                System.out.println(fecha_ingreso+"aquie llegu e");
                 String fechas[]= fecha_ingreso.split("-");
                 diasTrabajados+= 31 - Integer.parseInt(fechas[1]);
                 diasTrabajados+= (12 - Integer.parseInt(fechas[2]))*30;
@@ -122,15 +123,15 @@ public class ReporteDAO {
                
 
                 registro.setTotal(total);
-                System.out.println(registro.getNombreEmpleado());
+                System.out.println(registro.toString());
                 tabla.add(registro);
 
             }
             System.out.println("Holaaaaaa");
-             if (tabla != null) {
+             
             for(int i=0;i<tabla.size();i++){
                 System.out.println(tabla.get(i).getCesantias());
-            }
+            
              }
 
             st.close();
