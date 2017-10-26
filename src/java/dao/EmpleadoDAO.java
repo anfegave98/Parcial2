@@ -27,7 +27,7 @@ public class EmpleadoDAO {
         connection = DbUtil.getConnection();
     }
     
-    public boolean updateTabla(int a, int sueldo) throws SQLException {
+    public boolean updateSueldo(int a, int sueldo) throws SQLException {
         boolean result = false;
         Connection connection = DbUtil.getConnection();
         String query = "update empleado set sueldo = ? where id_empleado = ?";

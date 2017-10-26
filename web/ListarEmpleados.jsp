@@ -14,12 +14,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
     <body>
-      <form action="ListarE" method="GET">
-            
-            <input type="submit" class="btn btn-info" name="Enviar"/>
-        
-            
-        </form>
+      
         <h1>Empleados</h1>
         <div class="container">
             <div class="row">  
