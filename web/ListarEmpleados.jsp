@@ -56,7 +56,7 @@
                             <td><%=tabla.getRegimen_contratacion()%></td>
                
                             <td>
-                                <button onclick="window.location.href = 'EditarSueldo?id=<%=tabla.getSueldo()%>'" class="btn btn-warning">Editar Sueldo</button>
+                                <button onclick="window.location.href = 'EditarSalarios?id=<%=tabla.getId_empleado()%>'" class="btn btn-warning">Editar Sueldo</button>
                             </td>
                         </tr>
                         <% }

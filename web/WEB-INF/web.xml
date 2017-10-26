@@ -4,9 +4,17 @@
         <servlet-name>ListarE</servlet-name>
         <servlet-class>controller.ListarE</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EditarSalarios</servlet-name>
+        <servlet-class>controller.EditarSalarios</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ListarE</servlet-name>
         <url-pattern>/ListarE</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditarSalarios</servlet-name>
+        <url-pattern>/EditarSalarios</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

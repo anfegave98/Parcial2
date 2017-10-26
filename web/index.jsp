@@ -15,8 +15,9 @@
         <h1>Parcial</h1>
         
         <form action="ListarE" method="GET">
-            
-            <input type="submit" class="btn btn-info" name="Enviar"/>
+            Listar Empleados:
+            <br>
+            <input type="submit" class="btn btn-" name="Enviar">
         
             
         </form>
