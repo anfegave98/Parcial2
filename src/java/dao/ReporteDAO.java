@@ -19,92 +19,124 @@ import model.Reporte;
  * @author Labin
  */
 public class ReporteDAO {
-    
+
     private Connection connection;
 
     public ReporteDAO() throws SQLException {
         connection = DbUtil.getConnection();
     }
-    
-    
-     public ArrayList<Reporte> getAllReportes(int diasTrabajados) throws SQLException {
+
+    public ArrayList<Reporte> getAllReportes() throws SQLException {
         ArrayList<Reporte> tabla = new ArrayList<>();
         boolean result = false;
-        String query ="SELECT empleado.nombre,empleado.sueldo from empleado";
+        String query = "SELECT empleado.nombre,empleado.sueldo,estatus_empleado.fecha_ingreso from empleado,estatus_empleado where estatus_empleado.id_estatus = empleado.id_empleado ";
         Connection connection = DbUtil.getConnection();
         try {
 
             Statement st = connection.createStatement();
             ResultSet rs = st.executeQuery(query);
-           int sueldo; 
-           float devengado;
-           float total =0;
-           String nombre=null;
-      
+
+            float devengado;
+
+            String nombre = null;
+            float sueldo = 0;
+            float auxilioTransporte=0;
+            float prima=0;
+            float cesantias=0;
+            float intereses=0;
+            float vacaciones=0;
+            float salud=0;
+            float pension=0;
+            float parafiscales=0;
+            float total=0;
+            
+            String fecha_ingreso = null;
+            int diasTrabajados=0;
 
             while (rs.next()) {
-                Reporte registro = new Reporte(nombre, total);
+                Reporte registro = new Reporte(nombre, sueldo, auxilioTransporte, prima, cesantias, intereses, vacaciones, salud, pension, parafiscales, diasTrabajados ,total);
                 
-
+                total=0;
+                
+                fecha_ingreso= rs.getString("fecha_ingreso");
+                
+                String fechas[]= fecha_ingreso.split("-");
+                diasTrabajados+= 31 - Integer.parseInt(fechas[1]);
+                diasTrabajados+= (12 - Integer.parseInt(fechas[2]))*30;
+                
+                
+                
+                
                 nombre = rs.getString("nombre");
                 registro.setNombreEmpleado(nombre);
-                
-                sueldo=rs.getInt("sueldo");
-                
-                total+= sueldo*12;
-                
-                // prima
-                total+= (diasTrabajados*sueldo)/360;
-                
-                //cesanstias
-                 total+= (diasTrabajados*sueldo)/360;
-                 
-                //intereses cesanstias
-                total+=sueldo*0.12;
-                 
-                //vacaciones
-                total+= (diasTrabajados*sueldo)/720;
-                
-                //transporte
-                total+= 83.140*12;
-               
-                //salud
-                devengado =(float) (((sueldo*12)+((diasTrabajados*sueldo)/360)+((diasTrabajados*sueldo)/360)+(sueldo*0.12)+((diasTrabajados*sueldo)/720))*0.85);
-                
-                total+=devengado;
-                
-               //Pension
-               total+=sueldo*0.12;
-               
-               //SENA
-               total+= total*0.2;
-               
-               //ICBF
-                total+= total*0.3;
-               
-               //Familia
-               total+= total*0.4;
-                
-               registro.setTotal(total);
-               
-               tabla.add(registro);
 
-              
-            }
-            
+                sueldo = rs.getInt("sueldo");
+                registro.setSueldo(sueldo);
                 
-         
+                auxilioTransporte = (float) 83.140;
+                registro.setAuxilioTransporte(auxilioTransporte);
+                
+                
+
+                total += sueldo * 12;
+
+                // prima
+                prima = (diasTrabajados * sueldo) / 360;
+                registro.setPrima(prima);
+                total += prima;
+
+                //cesanstias
+                cesantias = (diasTrabajados * sueldo) / 360;
+                registro.setCesantias(cesantias);
+                total += cesantias;
+
+                //intereses cesanstias
+                intereses = (float) (sueldo * 0.12);
+                registro.setIntereses(intereses);
+                total += intereses;
+
+                //vacaciones
+                vacaciones=(diasTrabajados * sueldo) / 720;
+                registro.setVacaciones(vacaciones);
+                total += vacaciones;
+
+                //transporte
+                auxilioTransporte = (float) ((83.140*360)/diasTrabajados);
+                registro.setAuxilioTransporte(auxilioTransporte);
+                total += auxilioTransporte;
+
+                //salud
+                salud = (float) (((sueldo * 12) + ((diasTrabajados * sueldo) / 360) + ((diasTrabajados * sueldo) / 360) + (sueldo * 0.12) + ((diasTrabajados * sueldo) / 720)) * 0.85);
+                registro.setSalud(salud);
+                total += salud;
+
+                //Pension
+                pension= (float) (sueldo * 0.12);
+                registro.setPension(pension);
+                total += pension;
+
+                //parafiscales
+                parafiscales = (float) ((total * 0.2)+ (total*0.3) +(total*.4));
+                registro.setParafiscales(parafiscales);
+                total += parafiscales;
+
+               
+
+                registro.setTotal(total);
+
+                tabla.add(registro);
+
+            }
+
             st.close();
 
         } catch (SQLException e) {
             System.out.println("Problemas al obtener la lista de Tablas");
             e.printStackTrace();
         }
-          System.out.println(tabla.toString());
+        System.out.println(tabla.toString());
         return tabla;
 
     }
-    
-    
-    
+
 }
