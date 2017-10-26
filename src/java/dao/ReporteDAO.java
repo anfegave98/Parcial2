@@ -70,7 +70,9 @@ public class ReporteDAO {
                
                 //salud
                 devengado =(float) (((sueldo*12)+((diasTrabajados*sueldo)/360)+((diasTrabajados*sueldo)/360)+(sueldo*0.12)+((diasTrabajados*sueldo)/720))*0.85);
-               
+                
+                total+=devengado;
+                
                //Pension
                total+=sueldo*0.12;
                
