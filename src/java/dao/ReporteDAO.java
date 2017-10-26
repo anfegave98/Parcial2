@@ -127,6 +127,10 @@ public class ReporteDAO {
                 tabla.add(registro);
 
             }
+            
+            for(int i=0;i<tabla.size();i++){
+                System.out.println(tabla.get(i).getCesantias());
+            }
 
             st.close();
 
