@@ -14,12 +14,11 @@
     <body>
         <h1>Parcial</h1>
         
-        <form action="ListarE" method="GET">
-            Listar Empleados:
-            <br>
-            <input type="submit" class="btn btn-" name="Enviar">
-        
-            
+        <form> 
+         
+            <a class="btn btn-info" href="ListarE" role="button">Lista de Empleados</a>
+     
+            <a class="btn btn-info" href="Informe" role="button">Informe Anual</a>
         </form>
     </body>
 </html>

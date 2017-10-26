@@ -19,6 +19,10 @@
         <div class="container">
             <div class="row">  
                 <div class="col-sm-12">
+                    
+                    <a class="btn btn-info" href="index.jsp" role="button">Inicio</a>
+                    <br>
+                    <br>
                     <table class="table table-hover table-condensed table-bordered">
                         <tr>
                             <td>Id</td>
